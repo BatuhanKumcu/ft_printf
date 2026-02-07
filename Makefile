@@ -12,10 +12,10 @@ all : $(NAME)
 $(NAME) : $(OBJS)
 	ar -rc $(NAME) $(OBJS)
 
-.c.o : 
+.c.o :
 	$(CC) -c $(CFLAGS) $< -o $@
 
-clean : 
+clean :
 	$(RM) $(OBJS)
 
 fclean : clean
