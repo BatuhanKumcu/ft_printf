@@ -6,49 +6,64 @@
 /*   By: bakumcu <bakumcu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 13:55:26 by bakumcu           #+#    #+#             */
-/*   Updated: 2026/02/07 15:22:33 by bakumcu          ###   ########.fr       */
+/*   Updated: 2026/02/08 14:58:36 by bakumcu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	format_type(const char *format, va_list ap)
-{
-	int	type;
+// putcharint, putstrint, printadd, printint, printuint, printhex
 
-	type = 0;
-	if (*format == 'c')
-		type += ft_putchar((char)va_arg(ap, int));
-	else if (*format == 's')
-		type += ft_putstr(va_arg(ap, char *));
-	else if (*format == 'p')
-		type += wrtp(va_arg(ap, void *));
-	else if (*format == 'i' || *format == 'd')
-		type += ft_putnbr(va_arg(ap, int));
-	else if (*format == 'u')
-		type += ft_putnbr_basever2((unsigned int)va_arg(ap, unsigned int),
-				"0123456789");
-	else if (*format == 'x')
-		type += ft_putnbr_basever2((unsigned int)va_arg(ap, unsigned int),
-				"0123456789abcdef");
-	else if (*format == 'X')
-		type += ft_putnbr_basever2((unsigned int)va_arg(ap, unsigned int),
-				"0123456789ABCDEF");
-	else if (*format == '%')
-		type += write(1, "%", 1);
-	return (type);
+
+static int	check_conv(va_list *args, char c)
+{
+	int	r;
+
+	if (c == 'c')
+		r = ft_putchar_int((char)va_arg(*args, int));
+	else if (c == 's')
+		r = ft_putstr_int(va_arg(*args, char *));
+	else if (c == 'p')
+		r = ft_print_add(va_arg(*args, void *));
+	else if (c == 'i' || c == 'd')
+		r = ft_print_int(va_arg(*args, int));
+	else if (c == 'u')
+		r = ft_print_uint(va_arg(*args, unsigned int));
+	else if (c == 'X')
+		r = ft_print_hex(va_arg(*args, unsigned int), "0123456789ABCDEF");
+	else if (c == 'x')
+		r = ft_print_hex(va_arg(*args, unsigned int), "0123456789abcdef");
+	else if (c == '%')
+		r = ft_putchar_int('%');
+	else
+		r = 0;
+	return (r);
+}
+
+static int check_format(const char c)
+{
+    if (c == '%')
+        return (1);
+    return (ft_strchr("cspdiuxX", c) != NULL);
 }
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
+	int	total;
+	int	check;
 
+	total = 0;
 	va_start(args, format);
 	while (*format)
 	{
-		// we check if it is formatted first if not we just stdout normally
+		
+		check = ft_putchar_int(*format);
+		if (check == -1)
+			return (va_end(args), -1);
+		total += check;
+		format++;
 	}
-	
 
 	va_end(args);
 }

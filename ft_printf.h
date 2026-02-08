@@ -6,7 +6,7 @@
 /*   By: bakumcu <bakumcu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 14:09:56 by bakumcu           #+#    #+#             */
-/*   Updated: 2026/02/07 14:11:11 by bakumcu          ###   ########.fr       */
+/*   Updated: 2026/02/07 15:24:44 by bakumcu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-int		ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...);
 
 #endif
