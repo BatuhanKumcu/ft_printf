@@ -1,60 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_numbers.c                                 :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bakumcu <bakumcu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/08 16:12:18 by bakumcu           #+#    #+#             */
-/*   Updated: 2026/02/08 16:57:24 by bakumcu          ###   ########.fr       */
+/*   Created: 2026/02/10 14:52:47 by bakumcu           #+#    #+#             */
+/*   Updated: 2026/02/10 14:58:48 by bakumcu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_putn(char c)
+static void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-static int	ft_len_number(int n)
-{
-	int	i;
-
-	i = 0;
-	if (n == 0)
-		return (1);
-	if (n < 0)
-		i++;
-	while (n != 0)
-	{
-		n = n / 10;
-		i++;
-	}
-	return (i);
-}
-
-static void	ft_put_number(int n)
+int	ft_putnbr(int n)
 {
 	long	nb;
 
-	nb = n;
+	nb = (long)n;
 	if (nb < 0)
 	{
-		ft_putn('-');
+		ft_putchar('-');
 		nb *= -1;
 	}
+	if (nb == 0)
+		return (0);
 	if (nb >= 10)
 	{
-		ft_put_number(nb / 10);
-		ft_putn(nb % 10 + 48);
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
 	}
 	else
-		ft_putn(nb + 48);
-}
-
-int	ft_putnbr(int n)
-{
-	ft_put_number(n);
-	return (ft_len_number(n));
+		ft_putchar(nb + 48);
+	return (nb);
 }

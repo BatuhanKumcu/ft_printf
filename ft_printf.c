@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.format                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bakumcu <bakumcu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 13:55:26 by bakumcu           #+#    #+#             */
-/*   Updated: 2026/02/08 18:15:32 by bakumcu          ###   ########.fr       */
+/*   Updated: 2026/02/10 14:49:55 by bakumcu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <string.h>
 
 static int	format_type(va_list *args, char format)
 {
@@ -19,30 +20,30 @@ static int	format_type(va_list *args, char format)
 	if (format == 'c')
 		result = ft_putchar_int((char)va_arg(*args, int));
 	else if (format == 's')
-		result = ft_putstr_int(va_arg(*args, char *));
-	else if (format == 'p')
-		result = ft_print_add(va_arg(*args, void *));
+		result = ft_putstr(va_arg(*args, char *));
+	/*else if (format == 'p')
+		result = ft_print_add(va_arg(*args, void *));*/
 	else if (format == 'i' || format == 'd')
 		result = ft_print_int(va_arg(*args, int));
 	else if (format == 'u')
 		result = ft_print_uint(va_arg(*args, unsigned int));
-	else if (format == 'X')
+	/*else if (format == 'X')
 		result = ft_print_hex(va_arg(*args, unsigned int), "0123456789ABCDEF");
 	else if (format == 'x')
 		result = ft_print_hex(va_arg(*args, unsigned int), "0123456789abcdef");
 	else if (format == '%')
-		result = ft_putchar_int('%');
+		result = ft_putchar_int('%');*/
 	else
-	result = 0;
+		result = 0;
 	return (result);
 }
-
+/*
 static int check_format(const char format)
 {
     if (format == '%')
         return (1);
-    return (ft_strchr("cspdiuxX", format) != NULL);
-}
+    return (strchr("cspdiuxX", format) != NULL);
+}*/
 
 int	ft_printf(const char *format, ...)
 {
@@ -68,4 +69,11 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (total);
+}
+
+
+int	main(void)
+{
+	char	str[] = "selamlar";
+	ft_printf("%s", str);
 }
