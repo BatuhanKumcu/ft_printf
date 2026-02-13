@@ -6,7 +6,7 @@
 /*   By: bakumcu <bakumcu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/07 13:55:26 by bakumcu           #+#    #+#             */
-/*   Updated: 2026/02/10 14:49:55 by bakumcu          ###   ########.fr       */
+/*   Updated: 2026/02/13 13:13:38 by bakumcu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static int	format_type(va_list *args, char format)
 		result = ft_print_int(va_arg(*args, int));
 	else if (format == 'u')
 		result = ft_print_uint(va_arg(*args, unsigned int));
-	/*else if (format == 'X')
+	else if (format == 'X')
 		result = ft_print_hex(va_arg(*args, unsigned int), "0123456789ABCDEF");
 	else if (format == 'x')
 		result = ft_print_hex(va_arg(*args, unsigned int), "0123456789abcdef");
 	else if (format == '%')
-		result = ft_putchar_int('%');*/
+		result = ft_putchar_int('%');
 	else
 		result = 0;
 	return (result);
