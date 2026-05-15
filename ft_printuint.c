@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_printuint.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bakumcu <bakumcu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/10 15:03:29 by bakumcu           #+#    #+#             */
-/*   Updated: 2026/05/15 17:54:42 by bakumcu          ###   ########.fr       */
+/*   Created: 2026/05/15 17:47:44 by bakumcu           #+#    #+#             */
+/*   Updated: 2026/05/15 18:21:30 by bakumcu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putstr(const char *str)
+int	 ft_printuint(unsigned int n)
 {
-	int	i;
+	int	count;
 
-	i = 0;
-	if (!str)
-	{
-		write(1, "(null)", 6);
-		return (6);
-	}
-	while (str[i] != 0)
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (i);
+	count = 0;
+	if (n >= 10)
+		count += ft_printuint(n / 10);
+	count += ft_putchar(n % 10 + '0');
+	return (count);
 }

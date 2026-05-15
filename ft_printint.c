@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_printint.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bakumcu <bakumcu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 14:52:47 by bakumcu           #+#    #+#             */
-/*   Updated: 2026/02/10 14:58:48 by bakumcu          ###   ########.fr       */
+/*   Updated: 2026/05/15 18:21:56 by bakumcu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-int	ft_putnbr(int n)
+int	ft_printint(int n)
 {
 	long	nb;
+	int		count;
 
 	nb = (long)n;
+	count = 0;
 	if (nb < 0)
 	{
-		ft_putchar('-');
+		count += ft_putchar('-');
 		nb *= -1;
 	}
-	if (nb == 0)
-		return (0);
 	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
-	else
-		ft_putchar(nb + 48);
-	return (nb);
+		count += ft_printint(nb / 10);
+	count += ft_putchar(nb % 10 + '0');
+	return (count);
 }

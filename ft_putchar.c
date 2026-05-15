@@ -6,13 +6,13 @@
 /*   By: bakumcu <bakumcu@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 15:01:54 by bakumcu           #+#    #+#             */
-/*   Updated: 2026/02/10 15:02:31 by bakumcu          ###   ########.fr       */
+/*   Updated: 2026/05/15 18:23:01 by bakumcu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	return (write(1, &c, 1));
 }
